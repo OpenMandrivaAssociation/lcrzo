@@ -15,6 +15,7 @@ Source0:	%{name}-%{version}-src.tar.bz2
 Patch0:		lcrzo-4.17.0-genemake.patch
 BuildRequires:	libpcap-devel >= 0.7.2
 #Requires:	libpcap0 >= 0.7.2
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 Lcrzo is a network library, for network administrators and network
