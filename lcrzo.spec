@@ -3,7 +3,7 @@
 %define	major 4
 %define libname	%mklibname %{name} %{major}
 
-Summary:	Lcrzo is a network library, for network administrators and network hackers
+Summary:	Network library, for network administrators and network hackers
 Name:		lcrzo
 Group:		Networking/Other
 Version:	4.17.0
