@@ -7,7 +7,7 @@ Summary:	Network library, for network administrators and network hackers
 Name:		lcrzo
 Group:		Networking/Other
 Version:	4.17.0
-Release:	%mkrel 8
+Release:	%mkrel 9
 License:	LGPL
 URL:		http://www.laurentconstantin.com/en/lcrzo/
 Provides:	liblcrzo
