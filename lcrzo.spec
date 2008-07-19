@@ -7,14 +7,13 @@ Summary:	Network library, for network administrators and network hackers
 Name:		lcrzo
 Group:		Networking/Other
 Version:	4.17.0
-Release:	%mkrel 10
+Release:	%mkrel 11
 License:	LGPL
 URL:		http://www.laurentconstantin.com/en/lcrzo/
-Provides:	liblcrzo
 Source0:	%{name}-%{version}-src.tar.bz2
 Patch0:		lcrzo-4.17.0-genemake.patch
 BuildRequires:	libpcap-devel >= 0.7.2
-#Requires:	libpcap0 >= 0.7.2
+Provides:	liblcrzo
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
@@ -30,7 +29,7 @@ create a network test program.
 Summary:	Shared libraries for %{name}
 Group:          System/Libraries
 
-%description -n		%{libname}
+%description -n	%{libname}
 Lcrzo is a network library, for network administrators and network
 hackers. Its objective is to easily create network programs. This library
 provides network functionnalities for Ethernet, IP, UDP, TCP, ICMP, ARP
@@ -39,14 +38,14 @@ creation. Furthermore, lcrzo contains high level functions dealing with
 data storage and handling. Using all these functions, you can quickly
 create a network test program.
 
-%package	-n %{libname}-devel
+%package -n	%{libname}-devel
 Summary:	Development library and header files for the %{name} library
 Group:		Development/Other
 Requires:	%{libname} = %{version}-%{release}
 Provides:	%{name}-devel lib%{name}-devel
 Obsoletes:	%{name}-devel lib%{name}-devel
 
-%description -n %{libname}-devel
+%description -n	%{libname}-devel
 Lcrzo is a network library, for network administrators and network
 hackers. Its objective is to easily create network programs. This library 
 provides network functionnalities for Ethernet, IP, UDP, TCP, ICMP, ARP 
@@ -71,12 +70,13 @@ pushd src
 
     #make a shared lib the hard way...
     rm -f lib%{name}*.so*
-    gcc -Wl,-soname,lib%{name}.so.%{major} -shared %{optflags} -fPIC -o lib%{name}%{major}.so.%{so_version} *.o
+    gcc -Wl,-soname,lib%{name}.so.%{major} -shared -Wl,--as-needed -Wl,--no-undefined \
+    %{optflags} -fPIC -o lib%{name}%{major}.so.%{so_version} *.o -L%{_libdir} -lpcap
 
 popd
 
 %install
-[ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
+rm -rf %{buildroot}
 
 install -d %{buildroot}%{_libdir}
 install -d %{buildroot}%{_bindir}
@@ -99,9 +99,6 @@ install -m0644 src/lcrzo*.h %{buildroot}%{_includedir}/
 # install only english man pages
 install -m0644 doc/man/*en.* %{buildroot}%{_mandir}/man3/
 
-%clean
-[ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
-
 %if %mdkversion < 200900
 %post -n %{libname} -p /sbin/ldconfig
 %endif
@@ -109,6 +106,9 @@ install -m0644 doc/man/*en.* %{buildroot}%{_mandir}/man3/
 %if %mdkversion < 200900
 %postun -n %{libname} -p /sbin/ldconfig
 %endif
+
+%clean
+rm -rf %{buildroot}
 
 %files -n %{libname}
 %defattr(-,root,root)
@@ -119,9 +119,7 @@ install -m0644 doc/man/*en.* %{buildroot}%{_mandir}/man3/
 %defattr(-,root,root)
 %doc doc/*en.txt doc/changelog.txt doc/credits.txt doc/todo.txt INSTALLUNIX_EN.TXT
 %attr(0755,root,root) %{_bindir}/lcrzo-config
-%attr(644,root,root) %{_libdir}/*.a
+%attr(0644,root,root) %{_libdir}/*.a
 %attr(0755,root,root) %{_libdir}/*.so
 %attr(0644,root,root) %{_includedir}/*
 %attr(0644,root,root) %{_mandir}/man3/*
-
-
