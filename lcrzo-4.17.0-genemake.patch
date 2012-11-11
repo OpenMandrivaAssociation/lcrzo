@@ -1,0 +1,45 @@
+--- src/genemake	2002-11-03 21:01:25.000000000 +0100
++++ src/genemake.oden	2003-06-05 19:51:40.000000000 +0200
+@@ -1,3 +1,4 @@
++#!/bin/sh
+ :
+ 
+ # Define the variables. Edit config.dat if you want to make changes.
+@@ -344,12 +345,13 @@
+     LCRZODEF_INSTMAN3_b=/usr/share/man/man3
+     ;;
+  "Linux" )
+-    LCRZODEF_INSTINCLUDE=/usr/local/include
+-    LCRZODEF_INSTLIB=/usr/local/lib
+-    LCRZODEF_INSTBIN=/usr/local/bin
+-    LCRZODEF_INSTMAN1_a=/usr/local/man/man1
++    LCRZODEF_INSTINCLUDE=/usr/include
++    LCRZODEF_INSTLIB=/usr/lib
++    LCRZODEF_INSTBIN=/usr/bin
++    LCRZODEF_INSTMAN1_a=/usr/share/man/man1
++    LCRZODEF_INSTMAN1_a=/usr/share/man/man1
+     LCRZODEF_INSTMAN1_b=/usr/share/man/man1
+-    LCRZODEF_INSTMAN3_a=/usr/local/man/man3
++    LCRZODEF_INSTMAN3_a=/usr/share/man/man3
+     LCRZODEF_INSTMAN3_b=/usr/share/man/man3
+     ;;
+  "MacOS" )
+@@ -1387,8 +1389,7 @@
+ #----------------------------------------------------------------------
+ 
+ # we want ... - on veut ...
+-all: liblcrzo.a
+-#all: liblcrzo.a $lcrzoso
++all: liblcrzo.a $lcrzoso
+ 
+ # object list
+ # liste des objets a faire
+@@ -1571,7 +1572,7 @@
+ 	@echo "$txtinsta"
+ 
+ $lcrzoso: \$(LOBJETS)
+-	\$(CC) -o $lcrzovsov $gccShared \$(LOBJETS)
++	\$(CC) -Wl,-soname,$lcrzovsov -o $lcrzovsov $gccShared \$(LOBJETS)
+ 	rm -f $lcrzovso
+ 	ln -s $lcrzovsov $lcrzovso
+ 	rm -f $lcrzoso
