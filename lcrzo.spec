@@ -123,3 +123,63 @@ rm -rf %{buildroot}
 %attr(0755,root,root) %{_libdir}/*.so
 %attr(0644,root,root) %{_includedir}/*
 %attr(0644,root,root) %{_mandir}/man3/*
+
+
+%changelog
+* Fri Dec 10 2010 Oden Eriksson <oeriksson@mandriva.com> 4.17.0-14mdv2011.0
++ Revision: 620058
+- the mass rebuild of 2010.0 packages
+
+* Fri Sep 11 2009 Thierry Vignaud <tv@mandriva.org> 4.17.0-13mdv2010.0
++ Revision: 438241
+- rebuild
+
+* Wed Oct 29 2008 Oden Eriksson <oeriksson@mandriva.com> 4.17.0-12mdv2009.1
++ Revision: 298272
+- rebuilt against libpcap-1.0.0
+
+* Sat Jul 19 2008 Oden Eriksson <oeriksson@mandriva.com> 4.17.0-11mdv2009.0
++ Revision: 238723
+- use -Wl,--as-needed -Wl,--no-undefined
+
+* Wed Jul 09 2008 Oden Eriksson <oeriksson@mandriva.com> 4.17.0-10mdv2009.0
++ Revision: 232977
+- rebuild
+
+  + Pixel <pixel@mandriva.com>
+    - do not call ldconfig in %%post/%%postun, it is now handled by filetriggers
+
+* Mon Feb 18 2008 Thierry Vignaud <tv@mandriva.org> 4.17.0-9mdv2008.1
++ Revision: 170939
+- rebuild
+- fix "foobar is blabla" summary (=> "blabla") so that it looks nice in rpmdrake
+
+* Fri Dec 21 2007 Olivier Blin <oblin@mandriva.com> 4.17.0-8mdv2008.1
++ Revision: 136535
+- restore BuildRoot
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - kill re-definition of %%buildroot on Pixel's request
+
+
+* Fri Feb 02 2007 Oden Eriksson <oeriksson@mandriva.com> 4.17.0-8mdv2007.0
++ Revision: 115926
+- use the mkrel macro
+- Import lcrzo
+
+* Sun Jan 08 2006 Oden Eriksson <oeriksson@mandriva.com> 4.17.0-7mdk
+- rebuild
+
+* Fri Dec 31 2004 Oden Eriksson <oeriksson@mandrakesoft.com> 4.17.0-6mdk
+- revert latest "lib64 fixes"
+
+* Tue Dec 28 2004 Oden Eriksson <oeriksson@mandrakesoft.com> 4.17.0-5mdk
+- lib64 fixes
+
+* Sun Dec 12 2004 Oden Eriksson <oeriksson@mandrakesoft.com> 4.17.0-4mdk
+- fix deps
+
+* Thu May 06 2004 Oden Eriksson <oeriksson@mandrakesoft.com> 4.17.0-3mdk
+- merge static-devel into the devel package
+- misc spec file fixes
+
