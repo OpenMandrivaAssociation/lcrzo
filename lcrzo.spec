@@ -9,7 +9,7 @@ Group:		Networking/Other
 Version:	4.17.0
 Release:	15
 License:	LGPL
-URL:		http://www.laurentconstantin.com/en/lcrzo/
+URL:		https://www.laurentconstantin.com/en/lcrzo/
 Source0:	%{name}-%{version}-src.tar.bz2
 Patch0:		lcrzo-4.17.0-genemake.patch
 BuildRequires:	libpcap-devel >= 0.7.2
